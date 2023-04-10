@@ -4,11 +4,51 @@
 
 restaurant_ratings = {}
 
+
+
+def users_choice():
+    while True:
+      instructions = """
+        (S)ee all the ratings
+        (A)dd a new restaurant and rating
+        (Q)uit
+         """
+
+      print(instructions)
+
+      user_input = input("What do you desire? : ")
+      user_input = user_input.upper()
+
+      if user_input == "S":
+        reading_ratings()
+        organize_ratings()
+      elif user_input == "A":
+        restaurant_input()
+      elif user_input == "Q":
+         print("Goodbye!")
+         break
+          
+
+
 def restaurant_input():
     
     input_restaurant = input("Enter a restaurant: ")
     input_rating = input("Enter restaurants rating: ")
-    restaurant_ratings[input_restaurant] = input_rating   
+
+    # input_rating = int(input_rating)
+    digit_check = input_rating.isdigit()
+    if digit_check == False:
+        input_rating = input("Enter a valid number: ")
+    else:
+        input_rating = int(input_rating)
+
+        if input_rating > 5:
+            input_rating = input("Enter a rating from 1 to 5: ")
+     
+   
+    restaurant_ratings[input_restaurant] = input_rating  
+
+     
 
 
 def reading_ratings():
@@ -29,10 +69,8 @@ def organize_ratings():
         
 
 
-     
-restaurant_input()
-reading_ratings()
-organize_ratings()
+users_choice()   
+
 
         
 
